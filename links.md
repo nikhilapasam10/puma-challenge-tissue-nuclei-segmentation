@@ -39,9 +39,10 @@ https://github.com/mschuiveling/hover-next-inference-tils-melanoma
 
 ---
 
-## Model Weights
-Zenodo pretrained weights used for inference
+## Model Weights (NOT DONE YET)   
+Zenodo pretrained weights used for inference 
 
+---
 
 ## Documentation
 TIAToolbox semantic segmentation documentation 
