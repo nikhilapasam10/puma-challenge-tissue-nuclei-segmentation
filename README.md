@@ -94,7 +94,7 @@ Created Dataset Directory
 ```
 cd ~/data/nnUNet_raw
 mkdir Dataset100_Melanoma
-cd Dataset200_Melanoma
+cd Dataset100_Melanoma
 ```
 
 Created Required Folders
@@ -108,7 +108,7 @@ mkdir imagesTs
 Final Structure
 
 ```
-Dataset200_Melanoma
+Dataset100_Melanoma
 ├── imagesTr
 ├── labelsTr
 ├── imagesTs
@@ -164,7 +164,12 @@ Trained the test model for 20 epochs for 5 folds
 
 ---
 
-# Training nnU‑Net
+# Training nnU-Net
+
+• 165 training images
+• 41 testing images
+
+During training, nnU-Net automatically generates a progress.png image and detailed log files to monitor progress.
 
 Command Used
 
@@ -186,40 +191,22 @@ Output Saved To
 
 ---
 
-# Training Entire Dataset
-
-Training on full dataset
-
-• 165 training images
-• 41 testing images
-
----
-
-# Best Epochs
-
-Fold 0 — Epoch 247
-Fold 1 — Epoch 180
-Fold 2 — Epoch 240
-Fold 3 — Epoch 248
-Fold 4 — Epoch 212
-Fold All — Epoch 249
-
----
-
 # Ensemble Model
 
-Ran inference for each fold
+Create directory to save predictions
+Ran ensembling inference using each fold's best checkpoint file
 
 Command
 
 ```
-nnUNetv2_predict
-```
-
-Then Ensemble
-
-```
-nnUNetv2_ensemble
+nnUNetv2_predict \
+-i nnUNet_raw/Dataset200_Melanoma/imagesTs \
+-o nnUNet_predictions \
+-d Dataset200_Melanoma \
+-c 2d \
+--use_folds 0 1 2 3 4 \
+--chk checkpoint_best.pth \
+--save_probabilities
 ```
 
 ---
@@ -227,15 +214,27 @@ nnUNetv2_ensemble
 # Evaluation
 
 ```
-nnUNetv2_evaluate_folder
+nnUNetv2_evaluate_folder [ground_truth_folder] [prediction_folder]
 ```
 
-Generated
+nnUNetv2_evaluate_folder \
+nnUNet_raw/Dataset200_Melanoma/labelsTs \
+nnUNet_predictions
+```
 
-• summary.json
-• dice scores
+Generated:
 
+- summary.json – contains all evaluation metrics in JSON format, including:
+  - Overall metrics (foreground_mean) for all non-background classes (Dice, IoU, TP, FP, FN, TN).
+  - Per-class averages (mean) with Dice, IoU, TP, FP, FN, TN, predicted voxels, reference voxels.
+  - Per-case metrics (metric_per_case) showing detailed Dice, IoU, and counts for each image and class.
+  - Dice scores – per class and per image, useful for analyzing performance on individual labels.
+  - TP / FP / FN / TN counts – raw counts of prediction vs. ground truth voxels.
+  - n_pred / n_ref – total predicted voxels and reference voxels for each class
 ---
+
+# Training, Ensembling, Evaluating nnu-Net on Entire PUMA Dataset
+• 206 training images (Dataset 300_Melanoma)
 
 # TIA Toolbox Experiments
 
