@@ -39,6 +39,12 @@ https://github.com/mschuiveling/hover-next-inference-tils-melanoma
 
 ---
 
+## Zenodo Pretrained Weights  
+Provided by challenge organizers (nnU-Net and HoverNext)  
+https://zenodo.org/records/14651631
+
+---
+
 ## Documentation  
 TIAToolbox semantic segmentation documentation  
 https://tia-toolbox.readthedocs.io/en/v1.3.0/_notebooks/jnb/06-semantic-segmentation.html#semantic-segmentation-using-tiatoolbox-pretrained-models
