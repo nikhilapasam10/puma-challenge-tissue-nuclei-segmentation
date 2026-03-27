@@ -6,8 +6,8 @@ Research pipeline for tissue and nuclei segmentation on melanoma histopathology 
 
 # System Environment
 
-Home Directory (Limited Storage)
-Data Directory (Large Storage)
+Home Directory (Limited Storage)  
+Data Directory (Large Storage)  
 
 All large files including:
 • Dataset
