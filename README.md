@@ -9,14 +9,14 @@ Research pipeline for tissue and nuclei segmentation on melanoma histopathology 
 Home Directory (Limited Storage)  
 Data Directory (Large Storage)  
 
-All large files including:
-• Dataset
-• Model outputs
-• Virtual environments
-• nnU-Net directories
-• Scripts
+All large files including:  
+• Dataset  
+• Model outputs  
+• Virtual environments  
+• nnU-Net directories  
+• Scripts  
 
-were stored inside:
+were stored inside:  
 
 ```
 ~/data/
@@ -34,9 +34,9 @@ Created Python 3.9 environment for nnU-Net. All dependencies for the nnU-Net env
 
 # Created nnU‑Net Directory Structure
 
-Inside the data directory, I manually created the required nnU‑Net folder structure.
+Inside the data directory, I manually created the required nnU‑Net folder structure.  
 
-Commands Used
+Commands Used  
 
 ```
 cd ~/data
@@ -46,7 +46,7 @@ mkdir nnUNet_preprocessed
 mkdir nnUNet_results
 ```
 
-Directory Structure
+Directory Structure  
 
 ```
 ~/data/
@@ -55,9 +55,9 @@ Directory Structure
 ├── nnUNet_results/
 ```
 
-These directories are required by nnU‑Net.
+These directories are required by nnU‑Net.  
 
-Environment Variables Set
+Environment Variables Set  
 
 ```
 export nnUNet_raw=~/data/nnUNet_raw
@@ -65,13 +65,13 @@ export nnUNet_preprocessed=~/data/nnUNet_preprocessed
 export nnUNet_results=~/data/nnUNet_results
 ```
 
-Added to .bashrc
+Added to .bashrc  
 
 ```
 nano ~/.bashrc
 ```
 
-Added
+Added  
 
 ```
 export nnUNet_raw=~/data/nnUNet_raw
@@ -79,7 +79,7 @@ export nnUNet_preprocessed=~/data/nnUNet_preprocessed
 export nnUNet_results=~/data/nnUNet_results
 ```
 
-Then
+Then  
 
 ```
 source ~/.bashrc
@@ -87,9 +87,9 @@ source ~/.bashrc
 
 ---
 
-# Dataset Creation
+# Dataset Creation  
 
-Created Dataset Directory
+Created Dataset Directory  
 
 ```
 cd ~/data/nnUNet_raw
@@ -97,7 +97,7 @@ mkdir Dataset100_Melanoma
 cd Dataset100_Melanoma
 ```
 
-Created Required Folders
+Created Required Folders  
 
 ```
 mkdir imagesTr
@@ -105,7 +105,7 @@ mkdir labelsTr
 mkdir imagesTs
 ```
 
-Final Structure
+Final Structure  
 
 ```
 Dataset100_Melanoma
@@ -117,19 +117,19 @@ Dataset100_Melanoma
 
 ---
 
-# PUMA Dataset Details
+# PUMA Dataset Details  
 
-• 103 Primary Cases
-• 103 Metastatic Cases
-• Total: 206 images
+• 103 Primary Cases  
+• 103 Metastatic Cases  
+• Total: 206 images  
 
-ROI Size
+ROI Size  
 
-1024 × 1024
+1024 × 1024  
 
-Context Images
+Context Images  
 
-5120 × 5120
+5120 × 5120  
 
 Annotations - GeoJSON files
 
@@ -137,28 +137,28 @@ Annotations - GeoJSON files
 
 # Annotation Conversion
 
-Challenge organizers converted GeoJSON annotations into segmentation masks
+Challenge organizers converted GeoJSON annotations into segmentation masks  
 
-Cross‑checked 30 images manually
+Cross‑checked 30 images manually  
 
-Uploaded labels Tr into shared One-Drive
+Uploaded labels Tr into shared One-Drive  
 
 ---
 
 # First Test Training (10 Images)
 
-Created Small Dataset (Dataset100_Melanoma)
+Created Small Dataset (Dataset100_Melanoma)  
 
-• 10 Training Images
-• 2‑3 Test Images
+• 10 Training Images  
+• 2‑3 Test Images  
 
-Format needed for nnU-Net model: imagesTr, imagesTs, labelsTr, dataset.json 
+Format needed for nnU-Net model: imagesTr, imagesTs, labelsTr, dataset.json  
 
-imagesTr: images used for training (png), labelsTr: segmentation labels for the training images (png), imagesTs: images used for testing (png) 
+imagesTr: images used for training (png), labelsTr: segmentation labels for the training images (png), imagesTs: images used for testing (png)  
 
-Modified dataset.json so it would train for only 10 images 
+Modified dataset.json so it would train for only 10 images  
 
-NnUNet_raw (Dataset100_Melanoma), nnUNet_preprocessed, nnUNet_results 
+nnUNet_raw (Dataset100_Melanoma), nnUNet_preprocessed, nnUNet_results  
 
 Trained the test model for 20 epochs for 5 folds  
 
@@ -166,24 +166,24 @@ Trained the test model for 20 epochs for 5 folds
 
 # Training nnU-Net
 
-• 165 training images
-• 41 testing images
+• 165 training images  
+• 41 testing images  
 
-During training, nnU-Net automatically generates a progress.png image and detailed log files to monitor progress.
+During training, nnU-Net automatically generates a progress.png image and detailed log files to monitor progress.  
 
-Command Used
+Command Used  
 
 ```
 nnUNetv2_train Dataset200_Melanoma 2d nnUNetTrainer_250epochs nnUNetPlans
 ```
 
-Training Configuration
+Training Configuration  
 
-• 5 fold cross validation
-• 250 epochs
-• Patch based training
+• 5 fold cross validation  
+• 250 epochs  
+• Patch based training  
 
-Output Saved To
+Output Saved To  
 
 ```
 ~/data/nnUNet_results
@@ -193,11 +193,11 @@ Output Saved To
 
 # Ensemble Model
 
-Create directory to save predictions
-Ran ensembling inference using each fold's best checkpoint file
-Manually cross-checked nnU-Net tissue segmentation results for the ensembled model on Google Colab
+Create directory to save predictions  
+Ran ensembling inference using each fold's best checkpoint file  
+Manually cross-checked nnU-Net tissue segmentation results for the ensembled model on Google Colab  
 
-Command
+Command  
 
 ```
 nnUNetv2_predict \
@@ -239,105 +239,76 @@ Generated:
 • 206 training images (Dataset 300_Melanoma)
 
 # TIA Toolbox Experiments
-Thinking of using the TIA Toolbox pretrained model (semantic segmentation) and then using nnU-Net to fine-tune on PUMA Dataset 
+Thinking of using the TIA Toolbox pretrained model (semantic segmentation) and then using nnU-Net to fine-tune on PUMA Dataset.  
 
-Created virtual environment tia with necessary installations to run TIA Toolbox 
+Created virtual environment tia with necessary installations to run TIA Toolbox.  
 
-Successfully produce visualized segmentations for 3 images using TIA Toolbox pretrained model (fcn_resnet50_unet-bcss)
+Successfully produce visualized segmentations for 3 images using TIA Toolbox pretrained model (fcn_resnet50_unet-bcss).  
 
-Attempted to manually create a function to computed class-based dice scores 
+Attempted to manually create a function to computed class-based dice scores.  
 
-Produced incorrect dice scores because class labels from GT and TIA output do not match  
+Produced incorrect dice scores because class labels from GT and TIA output do not match.  
 
-GT Mask: 
+GT Mask:  
+- Class 0: Background
+- Class 1: Tumor
+- Class 2: Stroma
+- Class 3: Epidermis
+- Class 4: Blood Vessel
+- Class 5: Necrosis 
 
-Class 0: Background 
+TIA ToolBox:  
+- Class 0: Tumor
+- Class 1: Stroma
+- Class 2: Inflammatory
+- Class 3: Necrosis
+- Class 4: Other Regions
 
-Class 1: Tumor 
-
-Class 2: Stroma 
-
-Class 3: Epidermis 
-
-Class 4: Blood Vessel 
-
-Class 5: Necrosis 
-
-TIA ToolBox: 
-
-Class 0: Tumor 
-
-Class 1: Stroma 
-
-Class 2: Inflammatory 
-
-Class 3: Necrosis 
-
-Class 4: Other Regions 
-
-Researched and found TIA Toolbox has a built-in function to compute dice metrics  
+Researched and found TIA Toolbox has a built-in function to compute dice metrics.  
 
 Evaluated TIAToolbox’s segmentation output for a single metastatic ROI by comparing its predicted label mask to the ground-truth (GT) annotation.  
 
-Because TIAToolbox only predicts three meaningful classes that overlap with GT labels—tumor, stroma, and necrosis—first mapped TIAToolbox’s class indices into the GT label space: 
+Because TIAToolbox only predicts three meaningful classes that overlap with GT labels—tumor, stroma, and necrosis—first mapped TIAToolbox’s class indices into the GT label space:  
+- TIAToolbox 0 → GT 1 (tumor)
+- TIAToolbox 1 → GT 2 (stroma)
+- TIAToolbox 3 → GT 5 (necrosis)
 
-TIAToolbox 0 → GT 1 (tumor) 
+Classes that TIAToolbox does not model (GT classes 3: epidermis and 4: blood vessels) were handled separately.  
 
-TIAToolbox 1 → GT 2 (stroma) 
+Because TIAToolbox lacks explicit classes for epidermis (GT 3) and blood vessels (GT 4), I tried to find out how often these regions were misclassified as TIAToolbox class 4 ("other").  
 
-TIAToolbox 3 → GT 5 (necrosis) 
+Added visualization outputs along with corresponding dice scores in one-drive.  
 
-Classes that TIAToolbox does not model (GT classes 3: epidermis and 4: blood vessels) were handled separately 
-
-Because TIAToolbox lacks explicit classes for epidermis (GT 3) and blood vessels (GT 4), I tried to find out how often these regions were misclassified as TIAToolbox class 4 ("other") 
-
-Added visualization outputs along with corresponding dice scores in one-drive  
-
-Results
-
-Poor segmentation
-
-Discarded
-
-
+Results:  
+- Poor segmentation
+- Discarded
 ---
 
 # nnU-Net Pretrained Zenodo Weights
-Trying zenodo inference on v2 
+Tissue segmentation inference on PUMA dataset images using the Zenodo pretrained weights.  
 
-Copied checkpoint_best.pth to ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/fold_4/ 
+Created directories zenodo_images to run inference on sample pngs and zenodo_predictions to store the outputs. 
 
-Used the predict_from_modelfolder command but needs the dataset.json file which contains information about the dataset (generated by nnunet itself)  
+Copied checkpoint_best.pth to ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/fold_4/  
 
-Emailed Mark to ask where I can retrieve dataset.json and any guidance for HoverNext nuclei inference using Zenodo pretrained weights 
+Used the predict_from_modelfolder command and used the dataset.json from https://github.com/tueimage/PUMA-challenge-baseline-track2/tree/master/nnunetv2/nnunetv2_hist/nnUNet_raw/Dataset526_Mark.  
 
-The dataset.json can be found on the github (PUT LINK) .  
-
+```
 source ~/data/nnunet_env/bin/activate 
 
-(nnunet_env) npasam@SOMAI-SERV01:~/data$ nnUNetv2_predict_from_modelfolder \ 
+nnUNetv2_predict_from_modelfolder \
+-i ~/data/zenodo_images \
+-o ~/data/zenodo_predictions \
+-m ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d \
+-f 4 \
+-chk checkpoint_best.pth 
 
->   -i ~/data/zenodo_images \ 
-
->   -o ~/data/zenodo_predictions \ 
-
->   -m ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d \ 
-
->   -f 4 \ 
-
->   -chk checkpoint_best.pth 
-
-nnUNetv2_evaluate_folder \ 
-
->   ~/data/zenodo_labels \ 
-
->   ~/data/zenodo_predictions \ 
-
->   -djfile ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/dataset.json \ 
-
->   -pfile ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/plans.json 
-
- 
+nnUNetv2_evaluate_folder \
+~/data/zenodo_labels \
+~/data/zenodo_predictions \
+-djfile ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/dataset.json \
+-pfile ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/plans.json 
+```
 
 
 # HoverNext Nuclei Segmentation
