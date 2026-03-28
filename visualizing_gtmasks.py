@@ -1,4 +1,4 @@
-#Visualizing png segmentation maps through Google Colab
+#Visualizing grount truth segmentation maps (png) through Google Colab
 
 from google.colab import drive
 drive.mount('/content/drive')
