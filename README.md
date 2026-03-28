@@ -311,17 +311,42 @@ nnUNetv2_evaluate_folder \
 ```
 
 
-# HoverNext Nuclei Segmentation
+# HoverNext Nuclei Segmentation Using Zenodo Pretrained Weights (Track 1)
 
-Cloned Repo
+Cloned Repo  
+https://github.com/mschuiveling/hover-next-inference-tils-melanoma  
 
-Environment
+Create Virtual Environment  
+All dependencies were saved into a requirements.txt file for reproducibility.  
 
-Run Inference
+Make Directory for HoverNext Output  
+```
+mkdir ~/data/hovernext_class_inference
+```
 
+Run Inference  
+Only need to change code for input and output directories  
+```
+source ~/data/hovernext_venv/bin/activate
+python ~/data/main.py \
+>     --input ~/data/zenodo_images/training_set_metastatic_roi_018_0000.png \ 
+>     --output_root ~/data/hovernext_class_inference \
+>     --cp ~/data/puma_convnextv2_base \
+>     --save_polygon \
+>     --metric f1
+```
 
+HoverNext Output  
+Files generated:  
+- class_inst.json: maps each instance → a class
+- pinst_pp/:  instance ID per pixel (1…N nuclei)
+
+Created nuclei segmentation map and corresponding legend by loading the pinst_pp Zarr data and mapping instance IDs from class_inst.json to colors for visualization. Used a fixed color scheme for the 3 nuclei classes.  
+
+Code included in repository.
 
 ---
+# HoverNext Nuclei Segmentation Using Zenodo Pretrained Weights (Track 2)
 
 # WSI Inference  
 
