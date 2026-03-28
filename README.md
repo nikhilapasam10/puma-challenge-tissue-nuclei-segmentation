@@ -343,7 +343,7 @@ Files generated:
 
 Created nuclei segmentation map and corresponding legend by loading the pinst_pp Zarr data and mapping instance IDs from class_inst.json to colors for visualization. Used a fixed color scheme for the 3 nuclei classes.  
 
-Code included in repository.
+Code included in repository (hovernext_visualization.py).
 
 ---
 # HoverNext Nuclei Segmentation Using Zenodo Pretrained Weights (Track 2)
