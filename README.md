@@ -195,7 +195,7 @@ Output Saved To
 
 Create directory to save predictions  
 Ran ensembling inference using each fold's best checkpoint file  
-Manually cross-checked nnU-Net tissue segmentation results for the ensembled model on Google Colab  
+Manually cross-checked nnU-Net tissue segmentation results for the ensembled model
 
 Command  
 
