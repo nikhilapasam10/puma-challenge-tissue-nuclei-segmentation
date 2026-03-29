@@ -238,6 +238,8 @@ Generated:
 # Training, Ensembling, Evaluating nnu-Net on Entire PUMA Dataset
 • 206 training images (Dataset 300_Melanoma)
 
+---
+
 # TIA Toolbox Experiments
 Thinking of using the TIA Toolbox pretrained model (semantic segmentation) and then using nnU-Net to fine-tune on PUMA Dataset.  
 
@@ -310,6 +312,7 @@ nnUNetv2_evaluate_folder \
 -pfile ~/data/nnunetv2/nnunetv2_hist/nnUNet_results/Dataset526_Mark/nnUNetTrainer_nnUNetPlans_2d/plans.json 
 ```
 
+---
 
 # HoverNext Nuclei Segmentation Using Zenodo Pretrained Weights (Track 1)
 
@@ -347,6 +350,17 @@ Code included in repository (hovernext_visualization.py).
 
 ---
 # HoverNext Nuclei Segmentation Using Zenodo Pretrained Weights (Track 2)
+Encountering an issue during inference  
+While running the pipeline, I encountered a ValueError in post_process_utils.py, specifically:
+“could not broadcast input array from shape (10, H, W) into shape (11, H, W).”  
+
+From debugging, it appears that the post-processing code is expecting 11 output channels (10 nuclei classes + 1 background), whereas the model output only contains 10 channels corresponding to the nuclei classes. This mismatch is causing the failure during the post-processing step.  
+
+NEXT STEPS:  
+Check whether the toml file from the weights is correctly set  
+<img width="1014" height="127" alt="image" src="https://github.com/user-attachments/assets/de4368c8-f1c0-420a-875a-85d9efc7c25c" />  
+
+---
 
 # WSI Inference  
 
@@ -372,14 +386,6 @@ Encountered issue during the preprocessing stage due to an import error related 
 from acvl_utils.cropping_and_padding.bounding_boxes import crop_to_bbox  
 In newer versions of acvl-utils (e.g., 0.2.1+), crop_to_bbox no longer appears to exist, which leads to the following error:
 ImportError: cannot import name 'crop_to_bbox'
-
----
-
-# Challenges
-
----
-
-# Future Work
 
 ---
 
