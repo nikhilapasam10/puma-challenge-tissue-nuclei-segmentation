@@ -1,4 +1,4 @@
-#Visualizing nuclei segmentation maps in Google Colab (Track 1 - 3 classes)
+#Visualizing nuclei segmentation ground truths in Google Colab (Track 1 - 3 classes)
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
