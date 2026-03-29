@@ -1,4 +1,4 @@
-#Visualizing grount truth segmentation maps (png) through Google Colab
+#Visualizing nnU-Net ground truth segmentation maps (png) through Google Colab
 
 from google.colab import drive
 drive.mount('/content/drive')
