@@ -365,6 +365,9 @@ Cloned Repo
 https://github.com/DIAGNijmegen/nnUNet-for-pathology/tree/nnunet_for_pathology_v2  
 
 Attempted to run WSI inference using the script nnUNetV2_run_WSI_inference_REWORK_with_config_newest.py and a config file I created (wsi_config.py).  
+```
+python -u pathology_code_and_utils/nnUNetV2_run_WSI_inference_REWORK_with_config.py /home/npasam/data/wsi_inference.py
+```
 Encountered issue during the preprocessing stage due to an import error related to crop_to_bbox. Specifically, nnunetv2/preprocessing/cropping/cropping.py contains the line:  
 from acvl_utils.cropping_and_padding.bounding_boxes import crop_to_bbox  
 In newer versions of acvl-utils (e.g., 0.2.1+), crop_to_bbox no longer appears to exist, which leads to the following error:
