@@ -350,13 +350,22 @@ Code included in repository (hovernext_visualization.py).
 
 # WSI Inference  
 
-Researched and tried to understand whether nnUNet can directly support WSIs but standard nnUNet is patch-based and therefore does not have any built-in function for us to run inference on the whole slide images. However, I found a paper that adapts nnUNet specifically for pathology applications by developing a WSI inference pipeline. Their approach extracts tissue-containing patches using a mask, applies sliding-window inference with Gaussian weighting and overlap, and then reconstructs full-slide segmentation masks. The pipeline also produces pixel-wise uncertainty maps, which help in identifying any incorrect predictions. The authors made their code implementation publicly available on GitHub (https://github.com/DIAGNijmegen/nnUNet-for-pathology/tree/nnunet_for_pathology_v2), and used the WholeSlideData library for better patch handling.  
+Standard nnUNet is patch-based and therefore does not have any built-in function for us to run inference on the whole slide images.  
+
+Found a paper that adapts nnUNet specifically for pathology applications by developing a WSI inference pipeline. Their approach extracts tissue-containing patches using a mask, applies sliding-window inference with Gaussian weighting and overlap, and then reconstructs full-slide segmentation masks. The pipeline also produces pixel-wise uncertainty maps, which help in identifying any incorrect predictions. The authors made their code implementation publicly available on GitHub (https://github.com/DIAGNijmegen/nnUNet-for-pathology/tree/nnunet_for_pathology_v2), and used the WholeSlideData library for better patch handling.  
 
 This is the link to their paper: https://proceedings.mlr.press/v227/spronck24a.html.  
 More information about the inference pipeline can be found in the Appendix A section  
 
-Attempted to run WSI inference using the script nnUNetV2_run_WSI_inference_REWORK_with_config.py and a config file I created.  
-However, I am running into an issue during the preprocessing stage due to an import error related to crop_to_bbox. Specifically, nnunetv2/preprocessing/cropping/cropping.py contains the line:  
+Created a separate virtual environment specifically for Whole Slide Image (WSI) inference:
+```
+conda activate /data/npasam/nnunet_wsi_env
+```
+Cloned Repo  
+https://github.com/DIAGNijmegen/nnUNet-for-pathology/tree/nnunet_for_pathology_v2  
+
+Attempted to run WSI inference using the script nnUNetV2_run_WSI_inference_REWORK_with_config_newest.py and a config file I created (wsi_config.py).  
+Encountered issue during the preprocessing stage due to an import error related to crop_to_bbox. Specifically, nnunetv2/preprocessing/cropping/cropping.py contains the line:  
 from acvl_utils.cropping_and_padding.bounding_boxes import crop_to_bbox  
 In newer versions of acvl-utils (e.g., 0.2.1+), crop_to_bbox no longer appears to exist, which leads to the following error:
 ImportError: cannot import name 'crop_to_bbox'
