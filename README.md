@@ -286,7 +286,7 @@ Results:
 - Discarded
 ---
 
-# nnU-Net Tissue Segmentation using Zenodo Pretrained Weights (Track 1)
+# nnU-Net Tissue Segmentation using Zenodo Pretrained Weights
 Tissue segmentation inference on PUMA dataset images using the Zenodo pretrained weights.  
 
 Created directories zenodo_images to run inference on sample pngs and zenodo_predictions to store the outputs. 
